@@ -45,6 +45,28 @@ Inventario_ccl/
 └── README.md
 ```
 
+## Requisitos previos
+
+Para ejecutar el proyecto se recomienda usar las siguientes versiones:
+
+* .NET SDK 9.0.314
+  Descarga: https://dotnet.microsoft.com/es-es/download/dotnet/thank-you/sdk-9.0.314-windows-x64-installer
+
+* Node.js 22 LTS
+  Descarga: https://nodejs.org/
+
+* PostgreSQL
+  Descarga: https://www.postgresql.org/download/
+
+* Git
+  Descarga: https://git-scm.com/downloads
+
+No es necesario instalar Angular CLI de forma global, ya que el proyecto utiliza Angular 19 localmente mediante:
+
+```bash
+npx ng serve
+```
+
 ## Base de datos
 
 Crear en PostgreSQL la base de datos usada por el proyecto:
