@@ -1,5 +1,5 @@
 @InventarioCcl.Api_HostAddress = http://localhost:5054
-@JwtToken = REEMPLAZAR_CON_TOKEN_DEL_LOGIN
+@JwtToken = TOKEN_DEL_LOGIN
 
 POST {{InventarioCcl.Api_HostAddress}}/auth/login
 Content-Type: application/json
