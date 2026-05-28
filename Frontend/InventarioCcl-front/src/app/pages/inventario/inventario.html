@@ -1,64 +1,65 @@
 <div class="inventario-container">
-  <header>
-    <h1>Inventario CCL</h1>
-    <button type="button" (click)="logout()">Cerrar sesión</button>
+  <header class="topbar">
+    <div>
+      <h1>Inventario CCL</h1>
+      <p>Consulta el estado actual de productos y cantidades.</p>
+    </div>
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="secondary-button"
+        routerLink="/movimiento"
+      >
+        Registrar movimiento
+      </button>
+
+      <button
+        type="button"
+        class="danger-button"
+        (click)="logout()"
+      >
+        Cerrar sesión
+      </button>
+    </div>
   </header>
 
-  <section>
-    <h2>Registrar movimiento</h2>
-
-    <form (ngSubmit)="registrarMovimiento()">
+  <section class="card">
+    <div class="section-header">
       <div>
-        <label>Producto</label>
-        <input type="text" [(ngModel)]="nombre" name="nombre">
+        <h2>Inventario actual</h2>
+        <p>Listado actualizado de productos registrados.</p>
       </div>
-
-      <div>
-        <label>Cantidad</label>
-        <input type="number" [(ngModel)]="cantidad" name="cantidad">
-      </div>
-
-      <div>
-        <label>Tipo de movimiento</label>
-        <select [(ngModel)]="tipoMovimiento" name="tipoMovimiento">
-          <option value="entrada">Entrada</option>
-          <option value="salida">Salida</option>
-        </select>
-      </div>
-
-      <button type="submit">Registrar</button>
-    </form>
-
-    @if (mensaje) {
-      <p>{{ mensaje }}</p>
-    }
+    </div>
 
     @if (errorMessage) {
-      <p>{{ errorMessage }}</p>
+      <p class="error-message">{{ errorMessage }}</p>
     }
-  </section>
 
-  <section>
-    <h2>Inventario actual</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Producto</th>
-          <th>Cantidad</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        @for (producto of productos; track producto.id) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
           <tr>
-            <td>{{ producto.id }}</td>
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.cantidad }}</td>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
           </tr>
-        }
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          @for (producto of productos; track producto.id) {
+            <tr>
+              <td>{{ producto.id }}</td>
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.cantidad }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </section>
+
+  <footer class="footer">
+    <p>Prueba técnica Inventario CCL · Angular + .NET</p>
+  </footer>
 </div>

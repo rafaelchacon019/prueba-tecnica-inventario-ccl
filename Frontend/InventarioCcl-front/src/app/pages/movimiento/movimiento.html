@@ -1,0 +1,107 @@
+<div class="movimiento-container">
+  <header class="topbar">
+    <div>
+      <h1>Registrar movimiento</h1>
+      <p>Registra entradas o salidas de productos del inventario.</p>
+    </div>
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="secondary-button"
+        routerLink="/inventario"
+      >
+        Ver inventario
+      </button>
+    </div>
+  </header>
+
+  <section class="card">
+    <form (ngSubmit)="registrarMovimiento()">
+
+      <div class="form-group">
+        <label>Tipo de movimiento</label>
+
+        <select
+          [(ngModel)]="tipoMovimiento"
+          name="tipoMovimiento"
+        >
+          <option value="entrada">Entrada</option>
+          <option value="salida">Salida</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Producto</label>
+
+        <select
+          [(ngModel)]="productoSeleccionado"
+          name="productoSeleccionado"
+        >
+          <option value="">Seleccione un producto</option>
+
+          @for (producto of productos; track producto.id) {
+            <option [value]="producto.nombre">
+              {{ producto.nombre }}
+            </option>
+          }
+
+          @if (tipoMovimiento === 'entrada') {
+            <option value="nuevo">
+              + Nuevo producto
+            </option>
+          }
+        </select>
+      </div>
+
+      @if (productoActual) {
+        <p class="stock-info">
+            Stock disponible: <strong>{{ productoActual.cantidad }}</strong>
+        </p>
+      }
+
+      @if (productoSeleccionado === 'nuevo') {
+        <div class="form-group">
+          <label>Nuevo producto</label>
+
+          <input
+            type="text"
+            [(ngModel)]="nuevoProducto"
+            name="nuevoProducto"
+            placeholder="Nombre del producto"
+          >
+        </div>
+      }
+
+      <div class="form-group">
+        <label>Cantidad</label>
+
+        <input
+          type="number"
+          [(ngModel)]="cantidad"
+          name="cantidad"
+          placeholder="Cantidad"
+        >
+      </div>
+
+      <button
+        type="submit"
+        class="primary-button"
+      >
+        Registrar movimiento
+      </button>
+    </form>
+
+    @if (mensaje) {
+      <p class="success-message">{{ mensaje }}</p>
+    }
+
+    @if (errorMessage) {
+      <p class="error-message">{{ errorMessage }}</p>
+    }
+  </section>
+
+  <footer class="footer">
+    <p>Prueba técnica Inventario CCL · Angular + .NET</p>
+  </footer>
+</div>
