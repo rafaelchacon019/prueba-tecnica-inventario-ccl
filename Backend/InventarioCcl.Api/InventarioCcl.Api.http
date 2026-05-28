@@ -1,6 +1,30 @@
 @InventarioCcl.Api_HostAddress = http://localhost:5054
+@JwtToken = REEMPLAZAR_CON_TOKEN_DEL_LOGIN
 
-GET {{InventarioCcl.Api_HostAddress}}/weatherforecast/
+POST {{InventarioCcl.Api_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "admin",
+  "password": "admin123"
+}
+
+###
+
+GET {{InventarioCcl.Api_HostAddress}}/productos/inventario
 Accept: application/json
+Authorization: Bearer {{JwtToken}}
+
+###
+
+POST {{InventarioCcl.Api_HostAddress}}/productos/movimiento
+Content-Type: application/json
+Authorization: Bearer {{JwtToken}}
+
+{
+  "nombre": "Teclado",
+  "cantidad": 1,
+  "tipoMovimiento": "entrada"
+}
 
 ###
