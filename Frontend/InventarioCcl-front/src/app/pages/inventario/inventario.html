@@ -1,1 +1,64 @@
-<p>inventario works!</p>
+<div class="inventario-container">
+  <header>
+    <h1>Inventario CCL</h1>
+    <button type="button" (click)="logout()">Cerrar sesión</button>
+  </header>
+
+  <section>
+    <h2>Registrar movimiento</h2>
+
+    <form (ngSubmit)="registrarMovimiento()">
+      <div>
+        <label>Producto</label>
+        <input type="text" [(ngModel)]="nombre" name="nombre">
+      </div>
+
+      <div>
+        <label>Cantidad</label>
+        <input type="number" [(ngModel)]="cantidad" name="cantidad">
+      </div>
+
+      <div>
+        <label>Tipo de movimiento</label>
+        <select [(ngModel)]="tipoMovimiento" name="tipoMovimiento">
+          <option value="entrada">Entrada</option>
+          <option value="salida">Salida</option>
+        </select>
+      </div>
+
+      <button type="submit">Registrar</button>
+    </form>
+
+    @if (mensaje) {
+      <p>{{ mensaje }}</p>
+    }
+
+    @if (errorMessage) {
+      <p>{{ errorMessage }}</p>
+    }
+  </section>
+
+  <section>
+    <h2>Inventario actual</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (producto of productos; track producto.id) {
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.cantidad }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>

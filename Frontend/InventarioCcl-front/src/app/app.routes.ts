@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login';
 import { InventarioComponent } from './pages/inventario/inventario'
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {
@@ -14,6 +15,7 @@ export const routes: Routes = [
     },
     {
         path: 'inventario',
-        component: InventarioComponent
+        component: InventarioComponent,
+        canActivate: [authGuard]
     }
 ];

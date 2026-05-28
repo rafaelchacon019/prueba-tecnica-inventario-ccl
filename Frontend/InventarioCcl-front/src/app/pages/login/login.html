@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="login-container">
+    <h1>Inventario CCL</h1>
+
+    <form (ngSubmit)="login()">
+        <div>
+            <label>Usuario</label>
+
+            <input type="text" [(ngModel)]="usuario" name="usuario">
+        </div>
+
+        <div>
+            <label>Contraseña</label>
+
+            <input type="password" [(ngModel)]="password" name="password">
+        </div>
+
+        <button type="submit">
+            Iniciar sesión
+        </button>
+
+        @if (errorMessage) {
+            <p>{{ errorMessage }}</p>
+        }
+
+    </form>
+</div>
