@@ -32,13 +32,22 @@ MiniSistema de Gestión de Inventario desarrollado como prueba técnica utilizan
 * JWT Bearer Authentication
 
 ## Frontend
+## Frontend
 
 * Angular 19
 * TypeScript
 * SCSS
 * Angular Router
 * HttpClient
+* Angular 19
+* TypeScript
+* SCSS
+* Angular Router
+* HttpClient
 
+---
+
+# ✅ Funcionalidades
 ---
 
 # ✅ Funcionalidades
@@ -89,6 +98,7 @@ Inventario_ccl/
 │   └── InventarioCcl.Api/
 ├── Frontend/
 │   └── InventarioCcl-front/
+├── database.sql
 └── README.md
 ```
 
@@ -156,6 +166,7 @@ Backend/InventarioCcl.Api/appsettings.Development.json
 ```
 
 ## Ejemplo
+## Ejemplo
 
 ```json id="trf8ea"
 {
@@ -165,11 +176,15 @@ Backend/InventarioCcl.Api/appsettings.Development.json
   "jwt": {
     "key": "TU_CLAVE_LOCAL_DE_AL_MENOS_32_CARACTERES",
     "issuer": "InventarioCclApi",
+    "issuer": "InventarioCclApi",
     "audience": "InventarioCclFront"
   }
 }
 ```
 
+> `appsettings.Development.json` está ignorado por Git porque puede contener credenciales locales.
+
+---
 > `appsettings.Development.json` está ignorado por Git porque puede contener credenciales locales.
 
 ---
@@ -244,6 +259,7 @@ npx ng serve
 ```
 
 La aplicación queda disponible en:
+La aplicación queda disponible en:
 
 ```text id="7g3l3e"
 http://localhost:4200
@@ -263,11 +279,13 @@ Password: admin123
 # 🌐 Endpoints Principales
 
 ## 🔐 Login
+## 🔐 Login
 
 ```http id="h10yye"
 POST /auth/login
 ```
 
+### Body
 ### Body
 
 ```json id="sck2wt"
@@ -295,6 +313,7 @@ POST /productos/movimiento
 Authorization: Bearer {token}
 ```
 
+### Body
 ### Body
 
 ```json id="zjkylh"
