@@ -1,24 +1,6 @@
-# `📦 Prueba Técnica - Inventario CCL`
+# 📦 Prueba Técnica - Inventario CCL
 
-MiniSistema de Gestión de Inventario desarrollado como prueba técnica utilizando **.NET 9**, **Angular 19** y **PostgreSQL**.
-
----
-
-# 📑 Tabla de Contenidos
-
-* [🚀 Tecnologías](#-tecnologías)
-* [✅ Funcionalidades](#-funcionalidades)
-* [🏗️ Arquitectura](#️-arquitectura)
-* [📁 Estructura del Proyecto](#-estructura-del-proyecto)
-* [🛠️ Requisitos Previos](#️-requisitos-previos)
-* [🗄️ Configuración de Base de Datos](#️-configuración-de-base-de-datos)
-* [⚙️ Configuración Local](#️-configuración-local)
-* [▶️ Ejecución del Backend](#️-ejecución-del-backend)
-* [▶️ Ejecución del Frontend](#️-ejecución-del-frontend)
-* [🔑 Credenciales de Prueba](#-credenciales-de-prueba)
-* [🌐 Endpoints Principales](#-endpoints-principales)
-* [✅ Validaciones Implementadas](#-validaciones-implementadas)
-* [📄 Notas Finales](#-notas-finales)
+MiniSistema de Gestión de Inventario desarrollado como prueba técnica utilizando backend en **.NET 9**, frontend en **Angular 19** y base de datos **PostgreSQL**.
 
 ---
 
@@ -32,13 +14,7 @@ MiniSistema de Gestión de Inventario desarrollado como prueba técnica utilizan
 * JWT Bearer Authentication
 
 ## Frontend
-## Frontend
 
-* Angular 19
-* TypeScript
-* SCSS
-* Angular Router
-* HttpClient
 * Angular 19
 * TypeScript
 * SCSS
@@ -48,51 +24,37 @@ MiniSistema de Gestión de Inventario desarrollado como prueba técnica utilizan
 ---
 
 # ✅ Funcionalidades
----
 
-# ✅ Funcionalidades
-
-* Login básico con autenticación JWT utilizando credenciales de prueba en memoria.
-* Generación y validación de JWT Bearer Token.
+* Login básico con credenciales fijas en memoria.
+* Generación y uso de JWT Bearer Token.
 * Registro de entradas y salidas de productos.
-* Consulta de inventario actualizado.
-* Validaciones de:
-
-  * stock disponible,
-  * cantidades inválidas,
-  * tipo de movimiento.
-* Protección de rutas mediante Auth Guard.
-* Actualización dinámica del inventario después de registrar movimientos.
+* Consulta del inventario actual.
+* Validaciones básicas de cantidad, tipo de movimiento y stock disponible.
+* Rutas protegidas en frontend mediante Auth Guard.
 
 ---
 
 # 🏗️ Arquitectura
 
-## Backend
+El backend sigue una arquitectura por capas sencilla separando:
 
-El backend sigue una arquitectura por capas sencilla separando responsabilidades en:
+* Controllers
+* DTOs
+* Models
+* Services
+* Data
 
-* `Controllers`
-* `DTOs`
-* `Models`
-* `Services`
-* `Data`
-* `Migrations`
+El frontend utiliza Angular standalone components con separación por:
 
-## Frontend
-
-El frontend utiliza Angular standalone components y separación por:
-
-* `pages`
-* `services`
-* `guards`
-* `routes`
+* pages
+* services
+* guards
 
 ---
 
-# 📁 Estructura del Proyecto
+# 📁 Estructura
 
-```text id="3cx7sj"
+```text id="rkg09h"
 Inventario_ccl/
 ├── Backend/
 │   └── InventarioCcl.Api/
@@ -104,9 +66,9 @@ Inventario_ccl/
 
 ---
 
-# 🛠️ Requisitos Previos
+# 🛠️ Requisitos previos
 
-Para ejecutar el proyecto se recomienda utilizar las siguientes versiones:
+Para ejecutar el proyecto se recomienda usar las siguientes versiones:
 
 | Herramienta | Versión recomendada |
 | ----------- | ------------------- |
@@ -115,7 +77,7 @@ Para ejecutar el proyecto se recomienda utilizar las siguientes versiones:
 | PostgreSQL  | Última estable      |
 | Git         | Última estable      |
 
-## 📥 Descargas
+## Descargas
 
 ### .NET SDK 9.0.314
 
@@ -137,45 +99,45 @@ https://git-scm.com/downloads
 
 ---
 
-# 🗄️ Configuración de Base de Datos
+# 🗄️ Base de datos
 
-Crear en PostgreSQL la siguiente base de datos:
+Crear en PostgreSQL la base de datos usada por el proyecto:
 
-```sql id="lqfktx"
+```sql id="y7b62m"
 CREATE DATABASE "T001_inventario_ccl";
 ```
 
-La tabla `Productos` se genera automáticamente mediante migraciones de Entity Framework Core.
+La tabla `Productos` se crea mediante migraciones de Entity Framework Core.
+
+También se incluye el archivo `database.sql` en la raíz del proyecto como script de referencia para crear la base de datos y la tabla manualmente.
 
 ---
 
-# ⚙️ Configuración Local
+# ⚙️ Configuración local
 
-El archivo:
+El archivo versionado:
 
-```text id="iqrjlwm"
+```text id="y7l0kg"
 Backend/InventarioCcl.Api/appsettings.json
 ```
 
 contiene placeholders seguros.
 
-Para entorno local configurar:
+Para ejecución local, configurar los valores reales en:
 
-```text id="z1t04h"
+```text id="x0vov9"
 Backend/InventarioCcl.Api/appsettings.Development.json
 ```
 
 ## Ejemplo
-## Ejemplo
 
-```json id="trf8ea"
+```json id="9z4g5c"
 {
   "ConnectionStrings": {
     "defaultConnection": "Host=localhost;Port=5432;Database=T001_inventario_ccl;Username=postgres;Password=TU_PASSWORD"
   },
   "jwt": {
     "key": "TU_CLAVE_LOCAL_DE_AL_MENOS_32_CARACTERES",
-    "issuer": "InventarioCclApi",
     "issuer": "InventarioCclApi",
     "audience": "InventarioCclFront"
   }
@@ -185,39 +147,31 @@ Backend/InventarioCcl.Api/appsettings.Development.json
 > `appsettings.Development.json` está ignorado por Git porque puede contener credenciales locales.
 
 ---
-> `appsettings.Development.json` está ignorado por Git porque puede contener credenciales locales.
 
----
+# ▶️ Ejecución backend
 
-# ▶️ Ejecución del Backend
+Desde la carpeta del backend:
 
-Ingresar a la carpeta del backend:
-
-```bash id="r3epyr"
+```bash id="gljlwm"
 cd Backend/InventarioCcl.Api
-```
-
-## Restaurar dependencias
-
-```bash id="0d66yn"
 dotnet restore
 ```
 
 ## Instalar Entity Framework CLI (si es necesario)
 
-```bash id="6hcb8s"
+```bash id="u95phj"
 dotnet tool install --global dotnet-ef
 ```
 
 ## Validar instalación
 
-```bash id="blz0ew"
+```bash id="p3rsyu"
 dotnet ef --version
 ```
 
-## Ejecutar migraciones
+## Aplicar migraciones
 
-```bash id="6j9e6o"
+```bash id="mjlwmf"
 dotnet ef database update
 ```
 
@@ -226,69 +180,66 @@ dotnet ef database update
 
 ## Ejecutar API
 
-```bash id="r4w0zv"
+```bash id="jlwm6p"
 dotnet run
 ```
 
 La API queda disponible en:
 
-```text id="4m04ht"
+```text id="o4z0v9"
 http://localhost:5054
 ```
 
 ---
 
-# ▶️ Ejecución del Frontend
+# ▶️ Ejecución frontend
 
-Ingresar a la carpeta del frontend:
+Desde la carpeta del frontend:
 
-```bash id="3jx9bn"
+```bash id="mxs3qj"
 cd Frontend/InventarioCcl-front
 ```
 
 ## Instalar dependencias
 
-```bash id="0n80dc"
+```bash id="6c1aj8"
 npm install
 ```
 
 ## Ejecutar aplicación
 
-```bash id="d16nn6"
+```bash id="tq6ccl"
 npx ng serve
 ```
 
 La aplicación queda disponible en:
-La aplicación queda disponible en:
 
-```text id="7g3l3e"
+```text id="ulxjtp"
 http://localhost:4200
 ```
 
 ---
 
-# 🔑 Credenciales de Prueba
+# 🔑 Credenciales de prueba
 
-```text id="3jgkr5"
+```text id="qjlwm8"
 Usuario: admin
 Password: admin123
 ```
 
 ---
 
-# 🌐 Endpoints Principales
+# 🌐 Endpoints principales
 
 ## 🔐 Login
-## 🔐 Login
 
-```http id="h10yye"
+```http id="jlwm9n"
 POST /auth/login
 ```
 
 ### Body
-### Body
 
-```json id="sck2wt"
+```json id="a7w8x4"
 {
   "usuario": "admin",
   "password": "admin123"
@@ -297,26 +248,25 @@ POST /auth/login
 
 ---
 
-## 📦 Consultar Inventario
+## 📦 Consultar inventario
 
-```http id="th2ogq"
+```http id="jlwmab"
 GET /productos/inventario
 Authorization: Bearer {token}
 ```
 
 ---
 
-## 🔄 Registrar Movimiento
+## 🔄 Registrar movimiento
 
-```http id="x1g1li"
+```http id="jlwmcd"
 POST /productos/movimiento
 Authorization: Bearer {token}
 ```
 
 ### Body
-### Body
 
-```json id="zjkylh"
+```json id="k8r0pd"
 {
   "nombre": "Teclado",
   "cantidad": 1,
@@ -331,23 +281,29 @@ Authorization: Bearer {token}
 
 ---
 
-# ✅ Validaciones Implementadas
+# ✅ Verificación antes de entregar
 
-* Login inválido.
-* Cantidades menores o iguales a cero.
-* Salidas con stock insuficiente.
-* Bloqueo de salida para productos nuevos.
-* Protección de rutas sin JWT.
+## Backend
+
+```bash id="r1c5qw"
+dotnet build
+```
+
+## Frontend
+
+```bash id="3b8zv4"
+npx ng build
+```
 
 ---
 
-# 📄 Notas Finales
+# 🔒 Nota de seguridad
 
-* El proyecto fue probado en entorno limpio.
-* Backend y frontend compilan correctamente.
-* Se validó funcionamiento de migraciones y conexión PostgreSQL.
-* El proyecto utiliza Angular 19 local mediante `npx`.
-* El README incluye instrucciones completas de instalación y ejecución.
+Para esta prueba técnica el token JWT se almacena en `localStorage` y las credenciales del login están fijas en memoria.
 
-```
-```
+En un entorno productivo se deberían usar:
+
+* credenciales gestionadas de forma segura,
+* claves fuera del repositorio,
+* almacenamiento seguro de tokens,
+* y autenticación persistente mediante cookies HttpOnly o mecanismos equivalentes.
